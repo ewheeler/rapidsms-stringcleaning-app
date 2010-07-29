@@ -3,8 +3,9 @@
 import re
 
 import rapidsms
+from rapidsms.apps.base import AppBase
 
-class App (rapidsms.app.App):
+class App (AppBase):
 
     def parse (self, message):
         ''' Cleans up messages by removing punctuation, and replacing intended
@@ -28,7 +29,7 @@ class App (rapidsms.app.App):
            msgtxt = msgtxt.replace(mark, ' ') 
 
         # replace french decimal ',' with u.s.a. decimal '.'
-        alternate_decimals = [',']
+        alternate_decimals = [',', '..', '...']
         for alt in alternate_decimals:
             msgtxt = msgtxt.replace(alt, '.')
 
